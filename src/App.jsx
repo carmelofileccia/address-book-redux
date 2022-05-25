@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddContact from "./components/AddContact";
 import ContactsList from "./components/ContactsList";
@@ -10,37 +9,13 @@ function App() {
   const value = useSelector((state) => state.value);
   const dispatch = useDispatch();
 
-  const [listData, setListData] = useState([]);
-  const [filteredList, setFilteredList] = useState([]);
-
   // const [valueIncrement, setValueIncrement] = useState(0);
-
-  useEffect(() => {
-    setFilteredList(listData);
-  }, [listData]);
-
-  const deleteContact = (actualPhone) => {
-    const filteredListData = listData.filter(
-      (contact) => contact.phone !== actualPhone
-    );
-    setListData(filteredListData);
-  };
-
-  const onFilteredList = (value) => {
-    setFilteredList(
-      listData.filter(
-        (contact) => contact.name.toLowerCase().includes(value)
-        // ||
-        // contact.surname.toLowerCase().includes(value)
-      )
-    );
-  };
 
   return (
     <div className={styles.App}>
       <AddContact />
-      <ContactsList deleteContact={deleteContact} />
-      <FilterList onFilteredList={onFilteredList} />
+      <ContactsList />
+      <FilterList />
       <br />
       <br />
       <br />

@@ -33,13 +33,21 @@ const generic = (state, action) => {
         ...state,
         addressBookList: [...state.addressBookList, action.payload],
       };
-    // case "DELETE_CONTACT":
-    //   return { ...state, addressBookList: []}
+    case "DELETE_CONTACT":
+      return {
+        ...state,
+        addressBookList: state.addressBookList.filter(
+          (obj) => obj.name !== action.payload),
+      }
+    case "FILTER":
+      return {
+        ...state,
+        [action.payload.key]: action.payload.value,
+      };
     default:
       return state;
-  }
+  };
 };
-
 // Store
 const store = createStore(generic, initialState);
 

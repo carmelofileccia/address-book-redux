@@ -1,10 +1,14 @@
+import { useSelector, useDispatch } from "react-redux";
+
+
 import styles from "./index.module.scss";
 
-export default function Contact({ contactData, deleteContact }) {
+export default function Contact({ contactData }) {
+  const dispatch = useDispatch();
   return (
     <div
       className={styles.contactData}
-      onClick={() => deleteContact(contactData.phone)}
+      onClick={() => dispatch({ type: 'DELETE_CONTACT', payload: contactData.name })}
     >
       <p>
         {contactData.name} {contactData.surname}
